@@ -1,10 +1,9 @@
-[gd_scene load_steps=89 format=3 uid="uid://bl8v0fbx76q3u"]
+[gd_scene load_steps=88 format=3 uid="uid://bl8v0fbx76q3u"]
 
-[ext_resource type="Texture2D" uid="uid://i6nbk3ecd1ac" path="res://DALL·E 2024-01-01 13.15.25 - A 2D pixel art image of the Taipei 101 at night without any fireworks or audience, formatted to the game background size of 1920x1080. The image shoul.png" id="1_88hiu"]
 [ext_resource type="Texture2D" uid="uid://2op1avaoi6iw" path="res://Fireworks/Explosion_Crystals_Blue-sheet.png" id="1_iq3bk"]
-[ext_resource type="Texture2D" uid="uid://4c4t2go5sv0e" path="res://scope.png" id="3_33ue6"]
-[ext_resource type="Script" path="res://SubViewport.gd" id="3_ie70p"]
-[ext_resource type="Script" path="res://Sprite2D.gd" id="4_esles"]
+[ext_resource type="PackedScene" uid="uid://bgcbbble1pnhn" path="res://background.tscn" id="1_xm6o6"]
+[ext_resource type="PackedScene" uid="uid://cw06v6srkehto" path="res://scope.tscn" id="3_bndpk"]
+[ext_resource type="PackedScene" uid="uid://b1vwxi4shqrnk" path="res://yellow_ufo.tscn" id="4_h2eop"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kemf5"]
 atlas = ExtResource("1_iq3bk")
@@ -590,6 +589,8 @@ animations = [{
 
 [node name="World" type="Node2D"]
 
+[node name="Background" parent="." instance=ExtResource("1_xm6o6")]
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(394, 428)
 scale = Vector2(4, 4)
@@ -598,59 +599,13 @@ autoplay = "default"
 frame = 81
 frame_progress = 1.0
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = -1
+[node name="YellowUFO" parent="." instance=ExtResource("4_h2eop")]
+position = Vector2(308, 595)
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("1_88hiu")
+[node name="YellowUFO2" parent="." instance=ExtResource("4_h2eop")]
+position = Vector2(619, -217)
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -960.0
-offset_top = -540.0
-offset_right = -480.0
-offset_bottom = -265.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Scope" parent="." groups=["scope"] instance=ExtResource("3_bndpk")]
 
-[node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer"]
-handle_input_locally = false
-size = Vector2i(480, 275)
-render_target_update_mode = 4
-script = ExtResource("3_ie70p")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="CanvasLayer/SubViewportContainer/SubViewport"]
-follow_viewport_enabled = true
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -240.0
-offset_top = -137.5
-offset_right = 1552.0
-offset_bottom = 886.5
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("1_88hiu")
-
-[node name="Camera2D" type="Camera2D" parent="CanvasLayer/SubViewportContainer/SubViewport"]
-limit_left = 0
-limit_top = 0
-limit_right = 1792
-limit_bottom = 1024
-
-[node name="Sprite2D" type="Sprite2D" parent="." groups=["scope"]]
-texture = ExtResource("3_33ue6")
-script = ExtResource("4_esles")
+[node name="WorldCamera2D" type="Camera2D" parent="."]
+enabled = false

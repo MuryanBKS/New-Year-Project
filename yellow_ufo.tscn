@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1vwxi4shqrnk"]
+
+[ext_resource type="Texture2D" uid="uid://c73t77lnhhhki" path="res://shipBeige_manned.png" id="1_6lu05"]
+[ext_resource type="Script" path="res://yellow_ufo.gd" id="1_f281e"]
+[ext_resource type="Script" path="res://scale_component.gd" id="2_lxwh5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ue1cu"]
+radius = 70.0643
+
+[node name="YellowUFO" type="Area2D" node_paths=PackedStringArray("scale_componenet")]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_f281e")
+scale_componenet = NodePath("ScaleComponent")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_6lu05")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ue1cu")
+
+[node name="ScaleComponent" type="Node2D" parent="." node_paths=PackedStringArray("sprite")]
+script = ExtResource("2_lxwh5")
+sprite = NodePath("../Sprite2D")
+zoomed_scale = Vector2(4, 4)

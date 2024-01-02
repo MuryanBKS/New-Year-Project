@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgcbbble1pnhn"]
+
+[ext_resource type="Texture2D" uid="uid://i6nbk3ecd1ac" path="res://DALL·E 2024-01-01 13.15.25 - A 2D pixel art image of the Taipei 101 at night without any fireworks or audience, formatted to the game background size of 1920x1080. The image shoul.png" id="1_sxlst"]
+[ext_resource type="Script" path="res://scale_component.gd" id="2_70rn2"]
+
+[node name="Background" type="Node2D"]
+
+[node name="background" type="Sprite2D" parent="."]
+texture = ExtResource("1_sxlst")
+
+[node name="ScaleComponent" type="Node2D" parent="background" node_paths=PackedStringArray("sprite")]
+script = ExtResource("2_70rn2")
+sprite = NodePath("..")
+normal_scale = Vector2(1, 1)
+zoomed_scale = Vector2(2, 2)
