@@ -1,16 +1,105 @@
-[gd_scene load_steps=5 format=3 uid="uid://b1vwxi4shqrnk"]
+[gd_scene load_steps=9 format=3 uid="uid://b1vwxi4shqrnk"]
 
 [ext_resource type="Texture2D" uid="uid://c73t77lnhhhki" path="res://shipBeige_manned.png" id="1_6lu05"]
 [ext_resource type="Script" path="res://yellow_ufo.gd" id="1_f281e"]
-[ext_resource type="Script" path="res://scale_component.gd" id="2_lxwh5"]
+[ext_resource type="Script" path="res://scope_component.gd" id="2_lxwh5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ue1cu"]
 radius = 70.0643
 
-[node name="YellowUFO" type="Area2D" node_paths=PackedStringArray("scale_componenet")]
-scale = Vector2(0.5, 0.5)
+[sub_resource type="Animation" id="Animation_wdg21"]
+resource_name = "zoom_in"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.3, 0.3), Vector2(1.3, 1.3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.721569), Color(1, 1, 1, 0.678431), Color(1, 1, 1, 0.721569), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hxbma"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.3, 0.3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2ftx4"]
+resource_name = "zoom_out"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.3, 1.3), Vector2(0.3, 0.3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u6bps"]
+_data = {
+"RESET": SubResource("Animation_hxbma"),
+"zoom_in": SubResource("Animation_wdg21"),
+"zoom_out": SubResource("Animation_2ftx4")
+}
+
+[node name="YellowUFO" type="Area2D"]
+scale = Vector2(0.3, 0.3)
 script = ExtResource("1_f281e")
-scale_componenet = NodePath("ScaleComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_6lu05")
@@ -18,7 +107,11 @@ texture = ExtResource("1_6lu05")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ue1cu")
 
-[node name="ScaleComponent" type="Node2D" parent="." node_paths=PackedStringArray("sprite")]
+[node name="ScopeComponent" type="Node2D" parent="." node_paths=PackedStringArray("animation_player")]
 script = ExtResource("2_lxwh5")
-sprite = NodePath("../Sprite2D")
-zoomed_scale = Vector2(4, 4)
+animation_player = NodePath("../AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_u6bps")
+}

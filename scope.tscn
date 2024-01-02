@@ -1,55 +1,142 @@
-[gd_scene load_steps=7 format=3 uid="uid://cw06v6srkehto"]
+[gd_scene load_steps=11 format=3 uid="uid://cw06v6srkehto"]
 
 [ext_resource type="Script" path="res://scope.gd" id="1_1grvx"]
 [ext_resource type="Texture2D" uid="uid://4c4t2go5sv0e" path="res://scope.png" id="1_tpsrd"]
-[ext_resource type="Shader" path="res://scope.gdshader" id="3_20lit"]
-[ext_resource type="Script" path="res://scale_component.gd" id="4_tn16q"]
+[ext_resource type="Shader" path="res://scope_mask.gdshader" id="4_w7cjs"]
+[ext_resource type="Script" path="res://scope_component.gd" id="5_47lof"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r0ara"]
 radius = 388.415
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bci1f"]
-shader = ExtResource("3_20lit")
-shader_parameter/amt = 0.13
-shader_parameter/color = Color(0, 0, 0, 1)
-shader_parameter/t_color = Color(0, 0, 0, 0)
+[sub_resource type="Animation" id="Animation_rowh6"]
+resource_name = "zoom_in"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector2(0.3, 0.3), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
 
-[node name="Area2D" type="Area2D"]
+[sub_resource type="Animation" id="Animation_6t83r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.3, 0.3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_5sbbp"]
+resource_name = "zoom_out"
+length = 0.5
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1.36604, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.3, 0.3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v4las"]
+_data = {
+"RESET": SubResource("Animation_6t83r"),
+"zoom_in": SubResource("Animation_rowh6"),
+"zoom_out": SubResource("Animation_5sbbp")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v2lgx"]
+shader = ExtResource("4_w7cjs")
+shader_parameter/circle_size = 0.13
+shader_parameter/screen_width = 3000.0
+shader_parameter/screen_height = 3000.0
+
+[node name="Scope" type="Area2D" groups=["scope"]]
+z_index = 10
+scale = Vector2(0.3, 0.3)
 script = ExtResource("1_1grvx")
 
-[node name="Sprite2D" type="Sprite2D" parent="." groups=["scope"]]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_tpsrd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_r0ara")
 
-[node name="ColorRect2" type="ColorRect" parent="."]
-unique_name_in_owner = true
+[node name="ScopeComponent" type="Node2D" parent="." node_paths=PackedStringArray("animation_player")]
+script = ExtResource("5_47lof")
+animation_player = NodePath("../AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_v4las")
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
 visible = false
-material = SubResource("ShaderMaterial_bci1f")
+material = SubResource("ShaderMaterial_v2lgx")
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -3000.0
-offset_top = -3000.0
-offset_right = 3000.0
-offset_bottom = 3000.0
+offset_left = -1500.0
+offset_top = -1500.0
+offset_right = 1500.0
+offset_bottom = 1500.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 1, 1, 0)
-
-[node name="ScaleComponent" type="Node2D" parent="." node_paths=PackedStringArray("sprite")]
-script = ExtResource("4_tn16q")
-sprite = NodePath("../Sprite2D")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(3, 3)
-limit_left = -900
-limit_top = -500
-limit_right = 900
-limit_bottom = 500
-limit_smoothed = true
-position_smoothing_enabled = true
-position_smoothing_speed = 1.0
+color = Color(0, 0, 0, 1)
