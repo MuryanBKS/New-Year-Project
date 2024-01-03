@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b1vwxi4shqrnk" path="res://yellow_ufo.tscn" id="4_h2eop"]
 [ext_resource type="Script" path="res://WorldCamera2D.gd" id="5_vtbcw"]
 [ext_resource type="PackedScene" uid="uid://c260sb2ce3v4e" path="res://blur_mask.tscn" id="6_la58y"]
-[ext_resource type="Texture2D" uid="uid://c73t77lnhhhki" path="res://shipBeige_manned.png" id="6_pii61"]
+[ext_resource type="Texture2D" uid="uid://cbl35k2ias5y7" path="res://shipGreen_manned.png" id="6_mwqqh"]
 
 [node name="World" type="Node2D"]
 
@@ -15,7 +15,6 @@
 
 [node name="WorldCamera2D" type="Camera2D" parent="."]
 position = Vector2(2, 8)
-zoom = Vector2(5, 5)
 limit_left = -896
 limit_top = -512
 limit_right = 896
@@ -24,6 +23,8 @@ position_smoothing_enabled = true
 script = ExtResource("5_vtbcw")
 
 [node name="BlurMask" parent="." instance=ExtResource("6_la58y")]
+offset_top = -512.0
+offset_bottom = 512.0
 
 [node name="YellowUFO" parent="." instance=ExtResource("4_h2eop")]
 position = Vector2(606, -236)
@@ -33,5 +34,5 @@ position = Vector2(-285, -182)
 
 [node name="ShipBeigeManned" type="Sprite2D" parent="."]
 position = Vector2(-545, -106)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("6_pii61")
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("6_mwqqh")

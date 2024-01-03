@@ -10,7 +10,7 @@ func _ready() -> void:
 	
 func _process(delta: float) -> void:
 	if is_zoomed:
-		zoom = lerp(zoom, Vector2(10, 10), 1.0 - exp(-delta))
+		zoom = lerp(zoom, Vector2(5, 5), 1.0 - exp(-delta))
 		position = scope.position
 	else:
 		zoom = lerp(zoom, Vector2(1, 1), 1.0 - exp(-delta * 5))
