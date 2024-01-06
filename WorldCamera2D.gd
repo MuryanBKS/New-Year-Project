@@ -1,6 +1,6 @@
 extends Camera2D
 
-var scope: Area2D
+var scope: Node2D
 var is_zoomed = false
 
 func _ready() -> void:

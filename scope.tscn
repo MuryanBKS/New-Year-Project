@@ -1,12 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://cw06v6srkehto"]
+[gd_scene load_steps=10 format=3 uid="uid://cw06v6srkehto"]
 
 [ext_resource type="Script" path="res://scope.gd" id="1_1grvx"]
 [ext_resource type="Texture2D" uid="uid://4c4t2go5sv0e" path="res://scope.png" id="1_tpsrd"]
 [ext_resource type="Shader" path="res://scope_mask.gdshader" id="4_w7cjs"]
 [ext_resource type="Script" path="res://scope_component.gd" id="5_47lof"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_r0ara"]
-radius = 388.415
 
 [sub_resource type="Animation" id="Animation_6t83r"]
 length = 0.001
@@ -105,16 +102,13 @@ shader_parameter/circle_size = 0.078
 shader_parameter/screen_width = 3000.0
 shader_parameter/screen_height = 3000.0
 
-[node name="Scope" type="Area2D" groups=["scope"]]
+[node name="Scope" type="Node2D" groups=["scope"]]
 z_index = 10
 scale = Vector2(0.1, 0.1)
 script = ExtResource("1_1grvx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_tpsrd")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_r0ara")
 
 [node name="ScopeComponent" type="Node2D" parent="." node_paths=PackedStringArray("animation_player")]
 script = ExtResource("5_47lof")

@@ -1,9 +1,10 @@
 class_name Scope
-extends Area2D
+extends Node2D
 
 signal scope_changed
 
 var is_zoomed: bool = false
+var bullet_scene = preload("res://bullet.tscn")
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
@@ -28,7 +29,10 @@ func _input(event: InputEvent) -> void:
 		toggle_scope()
 	if event.is_action_pressed("ui_cancel"):
 		DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
-
+	if event.is_action("shoot"):
+		var bullet_instance = bullet_scene.instantiate()
+		bullet_instance.position = position
+		get_tree().root.add_child(bullet_instance)
 func toggle_scope():
 	scope_changed.emit()
 	is_zoomed = !is_zoomed
