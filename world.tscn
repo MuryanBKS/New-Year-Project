@@ -1,13 +1,14 @@
 [gd_scene load_steps=7 format=3 uid="uid://bl8v0fbx76q3u"]
 
 [ext_resource type="PackedScene" uid="uid://bgcbbble1pnhn" path="res://background.tscn" id="1_xm6o6"]
+[ext_resource type="Script" path="res://world.gd" id="1_yk2jy"]
 [ext_resource type="PackedScene" uid="uid://cw06v6srkehto" path="res://scope.tscn" id="3_bndpk"]
 [ext_resource type="PackedScene" uid="uid://b1vwxi4shqrnk" path="res://yellow_ufo.tscn" id="4_h2eop"]
 [ext_resource type="Script" path="res://WorldCamera2D.gd" id="5_vtbcw"]
 [ext_resource type="PackedScene" uid="uid://c260sb2ce3v4e" path="res://blur_mask.tscn" id="6_la58y"]
-[ext_resource type="Texture2D" uid="uid://cbl35k2ias5y7" path="res://shipGreen_manned.png" id="6_mwqqh"]
 
 [node name="World" type="Node2D"]
+script = ExtResource("1_yk2jy")
 
 [node name="Background" parent="." instance=ExtResource("1_xm6o6")]
 
@@ -31,8 +32,3 @@ position = Vector2(606, -236)
 
 [node name="YellowUFO2" parent="." instance=ExtResource("4_h2eop")]
 position = Vector2(-285, -182)
-
-[node name="ShipBeigeManned" type="Sprite2D" parent="."]
-position = Vector2(-545, -106)
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("6_mwqqh")
