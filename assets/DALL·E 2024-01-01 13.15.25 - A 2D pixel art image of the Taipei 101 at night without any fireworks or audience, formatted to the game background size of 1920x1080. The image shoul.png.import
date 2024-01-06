@@ -1,0 +1,34 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://i6nbk3ecd1ac"
+path="res://.godot/imported/DALL·E 2024-01-01 13.15.25 - A 2D pixel art image of the Taipei 101 at night without any fireworks or audience, formatted to the game background size of 1920x1080. The image shoul.png-719a6f66f6790801d40aad686dc8a8f0.ctex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://assets/DALL·E 2024-01-01 13.15.25 - A 2D pixel art image of the Taipei 101 at night without any fireworks or audience, formatted to the game background size of 1920x1080. The image shoul.png"
+dest_files=["res://.godot/imported/DALL·E 2024-01-01 13.15.25 - A 2D pixel art image of the Taipei 101 at night without any fireworks or audience, formatted to the game background size of 1920x1080. The image shoul.png-719a6f66f6790801d40aad686dc8a8f0.ctex"]
+
+[params]
+
+compress/mode=0
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=false
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=1

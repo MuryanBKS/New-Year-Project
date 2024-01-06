@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://bl8v0fbx76q3u"]
+
+[ext_resource type="PackedScene" uid="uid://bgcbbble1pnhn" path="res://scenes/background/background.tscn" id="1_xm6o6"]
+[ext_resource type="Script" path="res://scenes/main/world.gd" id="1_yk2jy"]
+[ext_resource type="PackedScene" uid="uid://cw06v6srkehto" path="res://scenes/scope/scope.tscn" id="3_bndpk"]
+[ext_resource type="PackedScene" uid="uid://b1vwxi4shqrnk" path="res://scenes/yellow_ufo/yellow_ufo.tscn" id="4_h2eop"]
+[ext_resource type="Script" path="res://scenes/main/camera/WorldCamera2D.gd" id="5_vtbcw"]
+[ext_resource type="PackedScene" uid="uid://c260sb2ce3v4e" path="res://scenes/background/blur_mask.tscn" id="6_la58y"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_yk2jy")
+
+[node name="Background" parent="." instance=ExtResource("1_xm6o6")]
+
+[node name="Scope" parent="." instance=ExtResource("3_bndpk")]
+
+[node name="WorldCamera2D" type="Camera2D" parent="."]
+position = Vector2(2, 8)
+limit_left = -896
+limit_top = -512
+limit_right = 896
+limit_bottom = 512
+position_smoothing_enabled = true
+script = ExtResource("5_vtbcw")
+
+[node name="BlurMask" parent="." instance=ExtResource("6_la58y")]
+offset_top = -512.0
+offset_bottom = 512.0
+
+[node name="YellowUFO" parent="." instance=ExtResource("4_h2eop")]
+position = Vector2(606, -236)
+
+[node name="YellowUFO2" parent="." instance=ExtResource("4_h2eop")]
+position = Vector2(-285, -182)
+
+[node name="YellowUFO3" parent="." instance=ExtResource("4_h2eop")]
+position = Vector2(-607, -325)
+
+[node name="YellowUFO4" parent="." instance=ExtResource("4_h2eop")]
+position = Vector2(-755, -202)
+
+[node name="YellowUFO5" parent="." instance=ExtResource("4_h2eop")]
+position = Vector2(341, -366)
+
+[node name="YellowUFO6" parent="." instance=ExtResource("4_h2eop")]
+position = Vector2(246, -158)
+
+[node name="YellowUFO7" parent="." instance=ExtResource("4_h2eop")]
+position = Vector2(86, -350)
+
+[node name="Fireworks" type="Node2D" parent="." groups=["fireworks"]]
