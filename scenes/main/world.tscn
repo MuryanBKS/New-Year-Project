@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bl8v0fbx76q3u"]
+[gd_scene load_steps=10 format=3 uid="uid://bl8v0fbx76q3u"]
 
 [ext_resource type="PackedScene" uid="uid://bgcbbble1pnhn" path="res://scenes/background/background.tscn" id="1_xm6o6"]
 [ext_resource type="Script" path="res://scenes/main/world.gd" id="1_yk2jy"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://c260sb2ce3v4e" path="res://scenes/background/blur_mask.tscn" id="6_la58y"]
 [ext_resource type="PackedScene" uid="uid://df3r6v3de7nk3" path="res://scenes/player/player.tscn" id="7_hjh7x"]
 [ext_resource type="PackedScene" uid="uid://b1vwxi4shqrnk" path="res://scenes/ufo/yellow_ufo.tscn" id="7_vhi5i"]
+[ext_resource type="PackedScene" uid="uid://cl74tvd015o5j" path="res://scenes/bullet_container.tscn" id="8_o8aar"]
+[ext_resource type="PackedScene" uid="uid://cb57gh475sqyh" path="res://scenes/heart_container.tscn" id="9_25qng"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_yk2jy")
@@ -44,3 +46,13 @@ position = Vector2(-656, -391)
 
 [node name="YellowUFO2" parent="." instance=ExtResource("7_vhi5i")]
 position = Vector2(-691, -318)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="BulletContainer" parent="CanvasLayer" instance=ExtResource("8_o8aar")]
+offset_left = -1.0
+offset_top = -77.0
+offset_right = 185.0
+offset_bottom = -1.0
+
+[node name="HeartContainer" parent="CanvasLayer" instance=ExtResource("9_25qng")]
