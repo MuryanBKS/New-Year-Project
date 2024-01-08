@@ -12,10 +12,10 @@ func _ready() -> void:
 
 func toggle_scope():
 	if is_zoomed:
-		animation_player.play("zoom_out")
+		animation_player.queue("zoom_out")
 		is_zoomed = !is_zoomed
 	else:
-		animation_player.play("zoom_in")
+		animation_player.queue("zoom_in")
 		is_zoomed = !is_zoomed
 
 func on_scope_changed():

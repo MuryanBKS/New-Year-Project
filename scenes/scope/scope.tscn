@@ -1,63 +1,117 @@
-[gd_scene load_steps=10 format=3 uid="uid://cw06v6srkehto"]
+[gd_scene load_steps=12 format=3 uid="uid://cw06v6srkehto"]
 
 [ext_resource type="Script" path="res://scenes/scope/scope.gd" id="1_1grvx"]
-[ext_resource type="Texture2D" uid="uid://4c4t2go5sv0e" path="res://scenes/scope/scope.png" id="1_tpsrd"]
-[ext_resource type="Shader" path="res://scenes/scope/scope_mask.gdshader" id="4_w7cjs"]
+[ext_resource type="Texture2D" uid="uid://dn08yiif808t2" path="res://scenes/scope/crosshair138.png" id="2_pnei4"]
+[ext_resource type="Texture2D" uid="uid://dwrvu1n5p1dls" path="res://scenes/scope/crosshair184.png" id="2_vo2ua"]
 [ext_resource type="Script" path="res://scenes/components/scope_component.gd" id="5_47lof"]
+[ext_resource type="AudioStream" uid="uid://dg7qt50hdtcbn" path="res://assets/Retro Gun SingleShot 04.wav" id="6_vkj6x"]
+[ext_resource type="Texture2D" uid="uid://b5roipcquldh4" path="res://scenes/scope/mask.png" id="6_wiaai"]
 
 [sub_resource type="Animation" id="Animation_6t83r"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
+tracks/0/path = NodePath("Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.1, 0.1)]
+"update": 1,
+"values": [ExtResource("2_pnei4")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("ColorRect:visible")
+tracks/1/path = NodePath(".:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Vector2(0, -9.53674e-07)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Mask:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.768627, 0, 0.141176, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_8rgdy"]
+resource_name = "idle"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -6), Vector2(0, -9.53674e-07)]
 }
 
 [sub_resource type="Animation" id="Animation_rowh6"]
 resource_name = "zoom_in"
-length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 2
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(2, 1),
-"update": 0,
-"values": [Vector2(0.1, 0.1), Vector2(0.2, 0.2)]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_vo2ua")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("ColorRect:visible")
+tracks/1/path = NodePath("Mask:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 0.901961)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
+"update": 0,
+"values": [Color(0.768627, 0, 0.141176, 0), Color(0.768627, 0, 0.141176, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_5sbbp"]
@@ -67,48 +121,59 @@ step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 2
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1.36604, 1),
-"update": 0,
-"values": [Vector2(0.2, 0.2), Vector2(0.1, 0.1)]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_pnei4")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("ColorRect:visible")
+tracks/1/path = NodePath("Sprite2D:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.768627, 0, 0.141176, 0), Color(0.768627, 0, 0.141176, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Mask:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.901961), Color(0, 0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v4las"]
 _data = {
 "RESET": SubResource("Animation_6t83r"),
+"idle": SubResource("Animation_8rgdy"),
 "zoom_in": SubResource("Animation_rowh6"),
 "zoom_out": SubResource("Animation_5sbbp")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_v2lgx"]
-shader = ExtResource("4_w7cjs")
-shader_parameter/circle_size = 0.078
-shader_parameter/screen_width = 3000.0
-shader_parameter/screen_height = 3000.0
-
 [node name="Scope" type="Node2D" groups=["scope"]]
 z_index = 10
-scale = Vector2(0.1, 0.1)
+position = Vector2(0, -9.53674e-07)
+scale = Vector2(0.2, 0.2)
 script = ExtResource("1_1grvx")
+scope_color = Color(0.160784, 0.184314, 0.235294, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_tpsrd")
+modulate = Color(0.768627, 0, 0.141176, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_pnei4")
 
 [node name="ScopeComponent" type="Node2D" parent="." node_paths=PackedStringArray("animation_player")]
 script = ExtResource("5_47lof")
@@ -119,18 +184,14 @@ libraries = {
 "": SubResource("AnimationLibrary_v4las")
 }
 
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-material = SubResource("ShaderMaterial_v2lgx")
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -2500.0
-offset_top = -2500.0
-offset_right = 2500.0
-offset_bottom = 2500.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
+[node name="BreathTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="Mask" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 0)
+texture = ExtResource("6_wiaai")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_vkj6x")
+volume_db = 10.0
+pitch_scale = 0.6
