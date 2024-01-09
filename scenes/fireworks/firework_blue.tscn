@@ -1,7 +1,7 @@
 [gd_scene load_steps=87 format=3 uid="uid://be1msts7y2yxi"]
 
 [ext_resource type="Texture2D" uid="uid://2op1avaoi6iw" path="res://assets/Fireworks/Explosion_Crystals_Blue-sheet.png" id="1_okqbk"]
-[ext_resource type="Script" path="res://scenes/fireworks/firework_blue.gd" id="2_is4he"]
+[ext_resource type="Script" path="res://scenes/fireworks/firework.gd" id="2_lvlxi"]
 [ext_resource type="AudioStream" uid="uid://dj500i3erj8jh" path="res://assets/Retro Explosion Short 01.wav" id="3_2whn4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_njwua"]
@@ -589,9 +589,10 @@ animations = [{
 [node name="FireworkBlue" type="AnimatedSprite2D"]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_advtw")
-autoplay = "default"
+frame = 81
+frame_progress = 1.0
 offset = Vector2(-2, 10)
-script = ExtResource("2_is4he")
+script = ExtResource("2_lvlxi")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_2whn4")

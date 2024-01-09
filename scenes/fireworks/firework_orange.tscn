@@ -1,7 +1,7 @@
 [gd_scene load_steps=85 format=3 uid="uid://w76504kr3tg3"]
 
 [ext_resource type="Texture2D" uid="uid://cy8w18qtlnnwu" path="res://assets/Fireworks/Explosion_Crystals_Orange-sheet.png" id="1_3jp4n"]
-[ext_resource type="Script" path="res://scenes/fireworks/firework_blue.gd" id="2_17exf"]
+[ext_resource type="Script" path="res://scenes/fireworks/firework.gd" id="2_17exf"]
 [ext_resource type="AudioStream" uid="uid://dj500i3erj8jh" path="res://assets/Retro Explosion Short 01.wav" id="3_tf73a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4vmlp"]

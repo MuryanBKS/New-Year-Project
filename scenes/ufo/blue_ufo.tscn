@@ -1,19 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://tyf6x6xpfcmj"]
+[gd_scene load_steps=6 format=3 uid="uid://tyf6x6xpfcmj"]
 
 [ext_resource type="Script" path="res://scenes/ufo/blue_ufo.gd" id="1_55kdh"]
 [ext_resource type="PackedScene" uid="uid://be1msts7y2yxi" path="res://scenes/fireworks/firework_blue.tscn" id="2_8wglh"]
 [ext_resource type="Texture2D" uid="uid://20h3qm5c13dt" path="res://assets/UFO/shipBlue_manned.png" id="3_pe264"]
+[ext_resource type="Script" path="res://scenes/components/death_component.gd" id="4_wfc7s"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ue1cu"]
 radius = 50.0
 
-[node name="BlueUFO" type="Area2D"]
+[node name="BlueUFO" type="Area2D" node_paths=PackedStringArray("death_component") groups=["ufo"]]
 scale = Vector2(0.1, 0.1)
 script = ExtResource("1_55kdh")
 firework = ExtResource("2_8wglh")
+death_component = NodePath("DeathComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("3_pe264")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ue1cu")
+
+[node name="DeathComponent" type="Node2D" parent="."]
+script = ExtResource("4_wfc7s")

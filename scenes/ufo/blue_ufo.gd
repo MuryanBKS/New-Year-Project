@@ -1,6 +1,7 @@
 extends Area2D
 
 @export var firework: PackedScene
+@export var death_component: DeathComponent
 
 var is_died = false
 var time = 0.0
@@ -18,6 +19,7 @@ func explode():
 	var firework_instance = firework.instantiate()
 	firework_instance.global_position = global_position
 	get_tree().get_first_node_in_group("fireworks").add_child(firework_instance)
+	death_component.emit_signal("died")
 	await firework_instance.animation_finished
 	queue_free()
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bl8v0fbx76q3u"]
+[gd_scene load_steps=15 format=3 uid="uid://bl8v0fbx76q3u"]
 
 [ext_resource type="PackedScene" uid="uid://bgcbbble1pnhn" path="res://scenes/background/background.tscn" id="1_xm6o6"]
 [ext_resource type="Script" path="res://scenes/main/world.gd" id="1_yk2jy"]
@@ -6,12 +6,29 @@
 [ext_resource type="PackedScene" uid="uid://tyf6x6xpfcmj" path="res://scenes/ufo/blue_ufo.tscn" id="6_3jybk"]
 [ext_resource type="PackedScene" uid="uid://c260sb2ce3v4e" path="res://scenes/background/blur_mask.tscn" id="6_la58y"]
 [ext_resource type="PackedScene" uid="uid://df3r6v3de7nk3" path="res://scenes/player/player.tscn" id="7_hjh7x"]
-[ext_resource type="PackedScene" uid="uid://b1vwxi4shqrnk" path="res://scenes/ufo/yellow_ufo.tscn" id="7_vhi5i"]
 [ext_resource type="PackedScene" uid="uid://cl74tvd015o5j" path="res://scenes/bullet_container.tscn" id="8_o8aar"]
-[ext_resource type="PackedScene" uid="uid://cb57gh475sqyh" path="res://scenes/heart_container.tscn" id="9_25qng"]
+[ext_resource type="AudioStream" uid="uid://ddg6fk8fu5vpe" path="res://assets/cheering-and-clapping.mp3" id="10_84i35"]
+[ext_resource type="Script" path="res://scenes/main/CheerSoundPlayer.gd" id="11_x4u5d"]
+[ext_resource type="AudioStream" uid="uid://dvln0qmwos3b5" path="res://assets/cheering-and-clapping2.mp3" id="12_gaeim"]
+[ext_resource type="AudioStream" uid="uid://cxnwo4f2m84gt" path="res://assets/crowd-cheering.mp3" id="13_jwg4i"]
+[ext_resource type="PackedScene" uid="uid://h7aa0hgcl8ak" path="res://scenes/fireworks/rocket_sprite_2d.tscn" id="13_nnnc5"]
+[ext_resource type="AudioStream" uid="uid://vp6mj0gy35j2" path="res://assets/short-crowd-cheer.mp3" id="14_uo4c3"]
+[ext_resource type="PackedScene" uid="uid://b1vwxi4shqrnk" path="res://scenes/ufo/yellow_ufo.tscn" id="14_uu04m"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_yk2jy")
+
+[node name="CheerSoundPlayer" type="AudioStreamPlayer" parent="."]
+script = ExtResource("11_x4u5d")
+sound = Array[AudioStreamMP3]([ExtResource("12_gaeim"), ExtResource("10_84i35"), ExtResource("13_jwg4i"), ExtResource("14_uo4c3")])
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="BulletContainer" parent="CanvasLayer" instance=ExtResource("8_o8aar")]
+offset_left = -1.0
+offset_top = -77.0
+offset_right = 185.0
+offset_bottom = -1.0
 
 [node name="Background" parent="." instance=ExtResource("1_xm6o6")]
 
@@ -28,31 +45,18 @@ script = ExtResource("5_vtbcw")
 offset_top = -512.0
 offset_bottom = 512.0
 
-[node name="Fireworks" type="Node2D" parent="." groups=["fireworks"]]
-
 [node name="Player" parent="." instance=ExtResource("7_hjh7x")]
 
-[node name="BlueUFO" parent="." instance=ExtResource("6_3jybk")]
-position = Vector2(-688, -180)
+[node name="BlueUFO8" parent="." instance=ExtResource("6_3jybk")]
+position = Vector2(-1077, -454)
 
-[node name="YellowUFO" parent="." instance=ExtResource("7_vhi5i")]
-position = Vector2(-581, -84)
+[node name="Fireworks" type="Node2D" parent="." groups=["fireworks"]]
 
-[node name="BlueUFO2" parent="." instance=ExtResource("6_3jybk")]
-position = Vector2(-776, -241)
+[node name="RocketSprite2D" parent="." instance=ExtResource("13_nnnc5")]
+position = Vector2(-301.5, 202)
 
-[node name="BlueUFO3" parent="." instance=ExtResource("6_3jybk")]
-position = Vector2(-656, -391)
+[node name="RocketSprite2D2" parent="." instance=ExtResource("13_nnnc5")]
+position = Vector2(-227.5, 204)
 
-[node name="YellowUFO2" parent="." instance=ExtResource("7_vhi5i")]
-position = Vector2(-691, -318)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="BulletContainer" parent="CanvasLayer" instance=ExtResource("8_o8aar")]
-offset_left = -1.0
-offset_top = -77.0
-offset_right = 185.0
-offset_bottom = -1.0
-
-[node name="HeartContainer" parent="CanvasLayer" instance=ExtResource("9_25qng")]
+[node name="YellowUFO" parent="." instance=ExtResource("14_uu04m")]
+position = Vector2(-724, 74)
