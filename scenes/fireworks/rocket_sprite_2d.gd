@@ -20,7 +20,7 @@ func _on_timer_timeout() -> void:
 
 
 func random_rocket_time():
-	$Timer.wait_time = randf_range(0.3, 1.0)
+	$Timer.wait_time = randf_range(2.0, 5.0)
 
 func random_speed():
 	speed = randf_range(2.0, 4.0)

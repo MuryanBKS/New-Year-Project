@@ -1,34 +1,116 @@
-[gd_scene load_steps=15 format=3 uid="uid://bl8v0fbx76q3u"]
+[gd_scene load_steps=23 format=3 uid="uid://bl8v0fbx76q3u"]
 
 [ext_resource type="PackedScene" uid="uid://bgcbbble1pnhn" path="res://scenes/background/background.tscn" id="1_xm6o6"]
 [ext_resource type="Script" path="res://scenes/main/world.gd" id="1_yk2jy"]
+[ext_resource type="AudioStream" uid="uid://bnigbp15pse4k" path="res://assets/Retro Alarm 02.mp3" id="5_tgy6w"]
 [ext_resource type="Script" path="res://scenes/main/camera/WorldCamera2D.gd" id="5_vtbcw"]
 [ext_resource type="PackedScene" uid="uid://tyf6x6xpfcmj" path="res://scenes/ufo/blue_ufo.tscn" id="6_3jybk"]
 [ext_resource type="PackedScene" uid="uid://c260sb2ce3v4e" path="res://scenes/background/blur_mask.tscn" id="6_la58y"]
 [ext_resource type="PackedScene" uid="uid://df3r6v3de7nk3" path="res://scenes/player/player.tscn" id="7_hjh7x"]
 [ext_resource type="PackedScene" uid="uid://cl74tvd015o5j" path="res://scenes/bullet_container.tscn" id="8_o8aar"]
 [ext_resource type="AudioStream" uid="uid://ddg6fk8fu5vpe" path="res://assets/cheering-and-clapping.mp3" id="10_84i35"]
+[ext_resource type="AudioStream" uid="uid://dj2n5nseswso7" path="res://assets/reload.mp3" id="11_bdr34"]
 [ext_resource type="Script" path="res://scenes/main/CheerSoundPlayer.gd" id="11_x4u5d"]
 [ext_resource type="AudioStream" uid="uid://dvln0qmwos3b5" path="res://assets/cheering-and-clapping2.mp3" id="12_gaeim"]
 [ext_resource type="AudioStream" uid="uid://cxnwo4f2m84gt" path="res://assets/crowd-cheering.mp3" id="13_jwg4i"]
 [ext_resource type="PackedScene" uid="uid://h7aa0hgcl8ak" path="res://scenes/fireworks/rocket_sprite_2d.tscn" id="13_nnnc5"]
 [ext_resource type="AudioStream" uid="uid://vp6mj0gy35j2" path="res://assets/short-crowd-cheer.mp3" id="14_uo4c3"]
 [ext_resource type="PackedScene" uid="uid://b1vwxi4shqrnk" path="res://scenes/ufo/yellow_ufo.tscn" id="14_uu04m"]
+[ext_resource type="Texture2D" uid="uid://cbbcj646napxq" path="res://assets/warning.png" id="16_iowhs"]
+
+[sub_resource type="Curve2D" id="Curve2D_s0cqi"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -929, 89, 0, 0, 0, 0, -942, -151, 0, 0, 0, 0, -939, -317, 0, 0, 0, 0, -931, -455)
+}
+point_count = 4
+
+[sub_resource type="Curve2D" id="Curve2D_sjdxa"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -653, 331, 0, 0, 0, 0, -232, 435, 0, 0, 0, 0, 69, 434, 0, 0, 0, 0, 198, 451, 0, 0, 0, 0, 297, 427, 0, 0, 0, 0, 357, 421, 0, 0, 0, 0, 427, 390, 0, 0, 0, 0, 611, 377, 0, 0, 0, 0, 639, 353)
+}
+point_count = 9
+
+[sub_resource type="Animation" id="Animation_gjv0i"]
+resource_name = "warning"
+length = 2.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Warning:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.4, 2.5),
+"transitions": PackedFloat32Array(0.5, 0.5, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 0, 1), Color(1, 1, 0, 1), Color(1, 1, 0, 0), Color(1, 1, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_kc4o1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Warning:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_idw4d"]
+_data = {
+"RESET": SubResource("Animation_kc4o1"),
+"warning": SubResource("Animation_gjv0i")
+}
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_yk2jy")
+ufos = Array[PackedScene]([ExtResource("6_3jybk"), ExtResource("14_uu04m")])
+rocket = ExtResource("13_nnnc5")
+metadata/_edit_vertical_guides_ = [954.0]
 
 [node name="CheerSoundPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_tgy6w")
+volume_db = -5.0
+pitch_scale = 1.5
+autoplay = true
 script = ExtResource("11_x4u5d")
 sound = Array[AudioStreamMP3]([ExtResource("12_gaeim"), ExtResource("10_84i35"), ExtResource("13_jwg4i"), ExtResource("14_uo4c3")])
 
+[node name="ReloadSoundPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_bdr34")
+volume_db = -5.0
+pitch_scale = 0.7
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="BulletContainer" parent="CanvasLayer" instance=ExtResource("8_o8aar")]
+[node name="BulletContainer" parent="CanvasLayer" groups=["bullet_container"] instance=ExtResource("8_o8aar")]
+unique_name_in_owner = true
 offset_left = -1.0
 offset_top = -77.0
 offset_right = 185.0
 offset_bottom = -1.0
+
+[node name="Warning" type="TextureRect" parent="CanvasLayer"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 0, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_iowhs")
 
 [node name="Background" parent="." instance=ExtResource("1_xm6o6")]
 
@@ -47,16 +129,36 @@ offset_bottom = 512.0
 
 [node name="Player" parent="." instance=ExtResource("7_hjh7x")]
 
-[node name="BlueUFO8" parent="." instance=ExtResource("6_3jybk")]
-position = Vector2(-1077, -454)
-
 [node name="Fireworks" type="Node2D" parent="." groups=["fireworks"]]
 
-[node name="RocketSprite2D" parent="." instance=ExtResource("13_nnnc5")]
-position = Vector2(-301.5, 202)
+[node name="UFOPath2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_s0cqi")
 
-[node name="RocketSprite2D2" parent="." instance=ExtResource("13_nnnc5")]
-position = Vector2(-227.5, 204)
+[node name="UFOPathFollow2D" type="PathFollow2D" parent="UFOPath2D"]
+unique_name_in_owner = true
+position = Vector2(-929, 89)
+rotates = false
 
-[node name="YellowUFO" parent="." instance=ExtResource("14_uu04m")]
-position = Vector2(-724, 74)
+[node name="FireworkPath2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_sjdxa")
+
+[node name="FireworkPathFollow2D" type="PathFollow2D" parent="FireworkPath2D"]
+unique_name_in_owner = true
+position = Vector2(-653, 331)
+rotation = 0.242182
+rotates = false
+
+[node name="UFOSpawnTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="FireworkTimer" type="Timer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_idw4d")
+}
+autoplay = "warning"
+
+[connection signal="timeout" from="UFOSpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="FireworkTimer" to="." method="_on_firework_timer_timeout"]

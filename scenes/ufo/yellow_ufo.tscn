@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://b1vwxi4shqrnk"]
+[gd_scene load_steps=7 format=3 uid="uid://b1vwxi4shqrnk"]
 
 [ext_resource type="Script" path="res://scenes/ufo/yellow_ufo.gd" id="1_f281e"]
-[ext_resource type="PackedScene" uid="uid://w76504kr3tg3" path="res://scenes/fireworks/firework_orange.tscn" id="2_xw10a"]
+[ext_resource type="PackedScene" uid="uid://w76504kr3tg3" path="res://scenes/fireworks/firework_crystals_orange.tscn" id="2_35jup"]
+[ext_resource type="PackedScene" uid="uid://w0aeih4vyn3d" path="res://scenes/fireworks/firework_default_orange.tscn" id="3_21w15"]
 [ext_resource type="Texture2D" uid="uid://i7mx8tlqsfmi" path="res://assets/UFO/shipYellow_manned.png" id="3_yhcjj"]
 [ext_resource type="Script" path="res://scenes/components/death_component.gd" id="4_8gi1f"]
 
@@ -11,7 +12,7 @@ radius = 50.0
 [node name="YellowUFO" type="Area2D" node_paths=PackedStringArray("death_component") groups=["ufo"]]
 scale = Vector2(0.1, 0.1)
 script = ExtResource("1_f281e")
-firework = ExtResource("2_xw10a")
+firework = Array[PackedScene]([ExtResource("2_35jup"), ExtResource("3_21w15")])
 death_component = NodePath("DeathComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

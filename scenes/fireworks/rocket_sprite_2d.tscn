@@ -1,9 +1,9 @@
 [gd_scene load_steps=59 format=3 uid="uid://h7aa0hgcl8ak"]
 
 [ext_resource type="Texture2D" uid="uid://dgxgjv74dql75" path="res://assets/Fireworks/Rocket_Blue.png-sheet.png" id="1_oxmj2"]
-[ext_resource type="PackedScene" uid="uid://be1msts7y2yxi" path="res://scenes/fireworks/firework_blue.tscn" id="2_btxyt"]
 [ext_resource type="Script" path="res://scenes/fireworks/rocket_sprite_2d.gd" id="2_edyvs"]
-[ext_resource type="PackedScene" uid="uid://w76504kr3tg3" path="res://scenes/fireworks/firework_orange.tscn" id="4_b2pg0"]
+[ext_resource type="PackedScene" uid="uid://be1msts7y2yxi" path="res://scenes/fireworks/firework_crystals_blue.tscn" id="3_4cwaa"]
+[ext_resource type="PackedScene" uid="uid://w76504kr3tg3" path="res://scenes/fireworks/firework_crystals_orange.tscn" id="4_5h8vm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hcb5g"]
 atlas = ExtResource("1_oxmj2")
@@ -407,7 +407,7 @@ autoplay = "default"
 centered = false
 offset = Vector2(-3.5, 2.08165e-12)
 script = ExtResource("2_edyvs")
-fireworks = Array[PackedScene]([ExtResource("2_btxyt"), ExtResource("4_b2pg0")])
+fireworks = Array[PackedScene]([ExtResource("3_4cwaa"), ExtResource("4_5h8vm")])
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
