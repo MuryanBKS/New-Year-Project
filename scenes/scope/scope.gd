@@ -13,7 +13,7 @@ var bullet_scene = preload("res://scenes/bullet/bullet.tscn")
 var breath_effect = false
 var bullet_count = 6
 var can_shoot = true
-
+var can_reload = true
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
@@ -37,7 +37,7 @@ func _process(delta: float) -> void:
 		get_tree().root.add_child(bullet_instance)
 		shoot.emit()
 		
-	if Input.is_action_just_pressed("reload"):
+	if Input.is_action_just_pressed("reload") and can_reload:
 		reload()
 	
 func _input(event: InputEvent) -> void:
@@ -56,8 +56,10 @@ func toggle_scope():
 
 func reload():
 	can_shoot = false
+	can_reload = false
 	reload_bullet.emit(bullet_count)
 
 func reload_completed():
 	bullet_count = 6
 	can_shoot = true
+	can_reload = true

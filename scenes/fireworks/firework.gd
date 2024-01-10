@@ -14,7 +14,7 @@ func _on_animation_finished() -> void:
 	queue_free()
 
 func random_size():
-	size = randf_range(1.2, 2.0)
+	size = randf_range(1.5, 2.5)
 	scale = Vector2(size, size)
 	
 	

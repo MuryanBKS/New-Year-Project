@@ -10,7 +10,7 @@ func _ready() -> void:
 	$Timer.start()
 	
 func _physics_process(delta: float) -> void:
-	position += Vector2.UP * 2
+	position += Vector2.UP * speed
 
 func _on_timer_timeout() -> void:
 	var firework_instance = fireworks.pick_random().instantiate()
@@ -20,8 +20,8 @@ func _on_timer_timeout() -> void:
 
 
 func random_rocket_time():
-	$Timer.wait_time = randf_range(2.0, 5.0)
+	$Timer.wait_time = randf_range(1.0, 2.8)
 
 func random_speed():
-	speed = randf_range(2.0, 4.0)
+	speed = randf_range(2.0, 5.0)
 	
