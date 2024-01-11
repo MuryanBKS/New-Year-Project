@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bl8v0fbx76q3u"]
+[gd_scene load_steps=26 format=3 uid="uid://bl8v0fbx76q3u"]
 
 [ext_resource type="PackedScene" uid="uid://bgcbbble1pnhn" path="res://scenes/background/background.tscn" id="1_xm6o6"]
 [ext_resource type="Script" path="res://scenes/main/world.gd" id="1_yk2jy"]
@@ -12,11 +12,19 @@
 [ext_resource type="AudioStream" uid="uid://dj2n5nseswso7" path="res://assets/reload.mp3" id="11_bdr34"]
 [ext_resource type="Script" path="res://scenes/main/CheerSoundPlayer.gd" id="11_x4u5d"]
 [ext_resource type="AudioStream" uid="uid://dvln0qmwos3b5" path="res://assets/cheering-and-clapping2.mp3" id="12_gaeim"]
+[ext_resource type="PackedScene" uid="uid://cup66onrnckl3" path="res://scenes/main/end_screen.tscn" id="12_jykeu"]
 [ext_resource type="AudioStream" uid="uid://cxnwo4f2m84gt" path="res://assets/crowd-cheering.mp3" id="13_jwg4i"]
 [ext_resource type="PackedScene" uid="uid://h7aa0hgcl8ak" path="res://scenes/fireworks/rocket_sprite_2d.tscn" id="13_nnnc5"]
+[ext_resource type="FontFile" uid="uid://c21jpgmaadcpu" path="res://assets/ThaleahFat.ttf" id="14_spvvc"]
 [ext_resource type="AudioStream" uid="uid://vp6mj0gy35j2" path="res://assets/short-crowd-cheer.mp3" id="14_uo4c3"]
 [ext_resource type="PackedScene" uid="uid://b1vwxi4shqrnk" path="res://scenes/ufo/yellow_ufo.tscn" id="14_uu04m"]
 [ext_resource type="Texture2D" uid="uid://cbbcj646napxq" path="res://assets/warning.png" id="16_iowhs"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_rsiwv"]
+font = ExtResource("14_spvvc")
+font_size = 30
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Curve2D" id="Curve2D_s0cqi"]
 _data = {
@@ -74,6 +82,10 @@ ufos = Array[PackedScene]([ExtResource("6_3jybk"), ExtResource("14_uu04m")])
 rocket = ExtResource("13_nnnc5")
 metadata/_edit_vertical_guides_ = [954.0]
 
+[node name="CountdownTimer" type="Timer" parent="."]
+wait_time = 20.0
+one_shot = true
+
 [node name="CheerSoundPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_tgy6w")
 volume_db = -5.0
@@ -88,6 +100,9 @@ volume_db = -5.0
 pitch_scale = 0.7
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="EndScreen" parent="CanvasLayer" instance=ExtResource("12_jykeu")]
+unique_name_in_owner = true
 
 [node name="BulletContainer" parent="CanvasLayer" groups=["bullet_container"] instance=ExtResource("8_o8aar")]
 unique_name_in_owner = true
@@ -111,6 +126,20 @@ offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("16_iowhs")
+
+[node name="TimeLabel" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "TEST"
+label_settings = SubResource("LabelSettings_rsiwv")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Background" parent="." instance=ExtResource("1_xm6o6")]
 
@@ -161,5 +190,6 @@ libraries = {
 }
 autoplay = "warning"
 
+[connection signal="timeout" from="CountdownTimer" to="." method="_on_countdown_timer_timeout"]
 [connection signal="timeout" from="UFOSpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="FireworkTimer" to="." method="_on_firework_timer_timeout"]
