@@ -1,23 +1,50 @@
 [gd_scene load_steps=9 format=3 uid="uid://cup66onrnckl3"]
 
 [ext_resource type="Script" path="res://scenes/main/end_screen.gd" id="1_0m33n"]
-[ext_resource type="Texture2D" uid="uid://c8tvxf0hqwno5" path="res://assets/4202086_like_facebook_fb_logo_social_icon.png" id="2_gr5ex"]
-[ext_resource type="FontFile" uid="uid://c21jpgmaadcpu" path="res://assets/ThaleahFat.ttf" id="2_yttkx"]
+[ext_resource type="Texture2D" uid="uid://b5j2x5owl6xc0" path="res://assets/4519091_facebook_like_icon.png" id="2_35upo"]
+[ext_resource type="FontFile" uid="uid://5kney6n2noub" path="res://assets/kenney_kenney-fonts/Fonts/Kenney Pixel Square.ttf" id="3_giamd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5a3d1"]
 bg_color = Color(0.909804, 0.92549, 0.94902, 1)
-border_width_left = 10
-border_width_bottom = 5
+border_width_left = 13
+border_width_bottom = 8
 border_color = Color(0.321569, 0.537255, 0.678431, 1)
 corner_radius_top_left = 30
 corner_radius_top_right = 30
 corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
 
-[sub_resource type="FontVariation" id="FontVariation_faxgj"]
-base_font = ExtResource("2_yttkx")
-variation_transform = Transform2D(1, 0.3, 2.08165e-12, 1, 2.08165e-12, 2.08165e-12)
-spacing_glyph = 6
+[sub_resource type="FontVariation" id="FontVariation_02rl4"]
+base_font = ExtResource("3_giamd")
+variation_transform = Transform2D(1, 0.1, 2.08165e-12, 1, 2.08165e-12, 2.08165e-12)
+spacing_glyph = 3
+
+[sub_resource type="Animation" id="Animation_wpjkv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.792157, 0.933333, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_pvle0"]
 resource_name = "congratulation"
@@ -47,33 +74,6 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_wpjkv"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("VBoxContainer/TextureRect:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.792157, 0.933333, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_72hhm"]
 _data = {
 "RESET": SubResource("Animation_wpjkv"),
@@ -96,14 +96,12 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_5a3d1")
 
 [node name="VBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
-theme_override_constants/separation = 20
-alignment = 2
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
 modulate = Color(0.792157, 0.933333, 1, 1)
-custom_minimum_size = Vector2(105, 2.08165e-12)
+custom_minimum_size = Vector2(118, 2.08165e-12)
 layout_mode = 2
-texture = ExtResource("2_gr5ex")
+texture = ExtResource("2_35upo")
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -113,11 +111,9 @@ theme_override_constants/margin_top = 13
 [node name="Label" type="Label" parent="VBoxContainer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0.145098, 0.494118, 0.796078, 0.733333)
-theme_override_constants/outline_size = 20
-theme_override_fonts/font = SubResource("FontVariation_faxgj")
-theme_override_font_sizes/font_size = 100
+theme_override_colors/font_color = Color(0.141176, 0.254902, 0.435294, 1)
+theme_override_fonts/font = SubResource("FontVariation_02rl4")
+theme_override_font_sizes/font_size = 80
 text = "10000000"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

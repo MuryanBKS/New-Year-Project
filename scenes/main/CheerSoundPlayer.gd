@@ -11,7 +11,7 @@ func random_pitch():
 	pitch_scale = randf_range(0.8, 1.2)
 
 func cheer():
-	volume_db = randf_range(-10.0, -5.0)
+	volume_db = randf_range(-5.0, 0.0)
 	random_sound()
 	random_pitch()
 	play()

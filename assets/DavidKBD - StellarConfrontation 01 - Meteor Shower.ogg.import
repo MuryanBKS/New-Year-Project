@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cf8gwgm40v1i7"
+path="res://.godot/imported/DavidKBD - StellarConfrontation 01 - Meteor Shower.ogg-c5b1193574b53bda1eb923cecf85af6e.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/DavidKBD - StellarConfrontation 01 - Meteor Shower.ogg"
+dest_files=["res://.godot/imported/DavidKBD - StellarConfrontation 01 - Meteor Shower.ogg-c5b1193574b53bda1eb923cecf85af6e.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4
