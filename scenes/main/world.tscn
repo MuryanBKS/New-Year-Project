@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bl8v0fbx76q3u"]
+[gd_scene load_steps=27 format=3 uid="uid://bl8v0fbx76q3u"]
 
 [ext_resource type="PackedScene" uid="uid://bgcbbble1pnhn" path="res://scenes/background/background.tscn" id="1_xm6o6"]
 [ext_resource type="Script" path="res://scenes/main/world.gd" id="1_yk2jy"]
@@ -19,7 +19,6 @@
 [ext_resource type="AudioStream" uid="uid://vp6mj0gy35j2" path="res://assets/short-crowd-cheer.mp3" id="14_uo4c3"]
 [ext_resource type="PackedScene" uid="uid://b1vwxi4shqrnk" path="res://scenes/ufo/yellow_ufo.tscn" id="14_uu04m"]
 [ext_resource type="Texture2D" uid="uid://cbbcj646napxq" path="res://assets/warning.png" id="16_iowhs"]
-[ext_resource type="PackedScene" uid="uid://c260sb2ce3v4e" path="res://scenes/background/blur_mask.tscn" id="19_j5jj4"]
 [ext_resource type="AudioStream" uid="uid://cf8gwgm40v1i7" path="res://assets/DavidKBD - StellarConfrontation 01 - Meteor Shower.ogg" id="20_mq1xc"]
 
 [sub_resource type="Animation" id="Animation_kc4o1"]
@@ -172,8 +171,6 @@ limit_right = 896
 limit_bottom = 512
 position_smoothing_enabled = true
 script = ExtResource("5_vtbcw")
-
-[node name="BlurMask" parent="." instance=ExtResource("19_j5jj4")]
 
 [node name="Player" parent="." instance=ExtResource("7_hjh7x")]
 
