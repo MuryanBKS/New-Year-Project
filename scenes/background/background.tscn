@@ -1,8 +1,44 @@
-[gd_scene load_steps=2 format=3 uid="uid://bgcbbble1pnhn"]
+[gd_scene load_steps=5 format=3 uid="uid://bgcbbble1pnhn"]
 
 [ext_resource type="Texture2D" uid="uid://i6nbk3ecd1ac" path="res://assets/DALL·E 2024-01-01 13.15.25 - A 2D pixel art image of the Taipei 101 at night without any fireworks or audience, formatted to the game background size of 1920x1080. The image shoul.png" id="1_sxlst"]
+
+[sub_resource type="Gradient" id="Gradient_7lyfg"]
+offsets = PackedFloat32Array(0, 0.696486, 1)
+colors = PackedColorArray(1, 1, 1, 0.729412, 0.146965, 0.146965, 0.146965, 0.893328, 0, 0, 0, 0.905882)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_r1yce"]
+gradient = SubResource("Gradient_7lyfg")
+width = 389
+height = 819
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nvklw"]
+gradient = SubResource("Gradient_7lyfg")
+width = 2614
+height = 539
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
 
 [node name="Background" type="Node2D"]
 
 [node name="background" type="Sprite2D" parent="."]
+modulate = Color(0.356863, 0.356863, 0.356863, 1)
+light_mask = 2
 texture = ExtResource("1_sxlst")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-77, -104)
+color = Color(0.952941, 0.913725, 0.694118, 0.823529)
+energy = 7.0
+range_item_cull_mask = 2
+texture = SubResource("GradientTexture2D_r1yce")
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(-12, 303)
+color = Color(0.952941, 0.913725, 0.694118, 0.823529)
+energy = 4.0
+range_item_cull_mask = 2
+texture = SubResource("GradientTexture2D_nvklw")

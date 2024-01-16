@@ -10,7 +10,6 @@ signal reload_bullet(bullet_count: int)
 
 var is_zoomed: bool = false
 var bullet_scene = preload("res://scenes/bullet/bullet.tscn")
-var breath_effect = false
 var bullet_count = 6
 var can_shoot = true
 var can_reload = true
@@ -23,11 +22,10 @@ func _ready() -> void:
 		
 		
 func _process(delta: float) -> void:
-	if (global_position - get_global_mouse_position()).length() < 20.0 and breath_effect and is_zoomed:
-		animation_player.queue("idle")
 		
 	if Input.is_action_just_pressed("shoot") and can_shoot:
 		if bullet_count == 0:
+			reload()
 			return
 		bullet_count -= 1
 		bullet_count_changed.emit(bullet_count)
@@ -51,7 +49,6 @@ func _input(event: InputEvent) -> void:
 func toggle_scope():
 	scope_changed.emit()
 	is_zoomed = !is_zoomed
-	breath_effect = !breath_effect
 
 
 func reload():

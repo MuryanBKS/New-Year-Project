@@ -1,0 +1,44 @@
+[gd_scene load_steps=9 format=3 uid="uid://dsyne5ytw5i08"]
+
+[ext_resource type="Script" path="res://scenes/ufo/green_ufo.gd" id="1_6jdud"]
+[ext_resource type="Texture2D" uid="uid://cbl35k2ias5y7" path="res://assets/UFO/shipGreen_manned.png" id="1_7st6b"]
+[ext_resource type="PackedScene" uid="uid://bk4v4nlq3ncy6" path="res://scenes/fireworks/firework_crystals_green.tscn" id="2_6o5eo"]
+[ext_resource type="PackedScene" uid="uid://d4nahbgwebwcf" path="res://scenes/fireworks/firework_default_green.tscn" id="3_enxmx"]
+[ext_resource type="Script" path="res://scenes/components/death_component.gd" id="5_8x2vf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ue1cu"]
+radius = 50.0
+
+[sub_resource type="Animation" id="Animation_dc4qp"]
+resource_name = "move"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lp3xb"]
+_data = {
+"move": SubResource("Animation_dc4qp")
+}
+
+[node name="GreenUFO" type="Area2D" node_paths=PackedStringArray("death_component") groups=["ufo"]]
+scale = Vector2(0.1, 0.1)
+script = ExtResource("1_6jdud")
+firework = Array[PackedScene]([ExtResource("2_6o5eo"), ExtResource("3_enxmx")])
+death_component = NodePath("DeathComponent")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_7st6b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ue1cu")
+
+[node name="DeathComponent" type="Node2D" parent="."]
+script = ExtResource("5_8x2vf")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lp3xb")
+}
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

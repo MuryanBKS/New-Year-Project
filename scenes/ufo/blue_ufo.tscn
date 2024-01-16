@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://tyf6x6xpfcmj"]
+[gd_scene load_steps=10 format=3 uid="uid://tyf6x6xpfcmj"]
 
 [ext_resource type="Script" path="res://scenes/ufo/blue_ufo.gd" id="1_55kdh"]
 [ext_resource type="PackedScene" uid="uid://be1msts7y2yxi" path="res://scenes/fireworks/firework_crystals_blue.tscn" id="2_dajam"]
@@ -9,6 +9,43 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_ue1cu"]
 radius = 50.0
 
+[sub_resource type="Animation" id="Animation_ja8u3"]
+resource_name = "move"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.174533, 0.174533, -0.174533]
+}
+
+[sub_resource type="Animation" id="Animation_w8gfb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.174533]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0nnf0"]
+_data = {
+"RESET": SubResource("Animation_w8gfb"),
+"move": SubResource("Animation_ja8u3")
+}
+
 [node name="BlueUFO" type="Area2D" node_paths=PackedStringArray("death_component") groups=["ufo"]]
 scale = Vector2(0.1, 0.1)
 script = ExtResource("1_55kdh")
@@ -16,6 +53,7 @@ firework = Array[PackedScene]([ExtResource("2_dajam"), ExtResource("3_fcykf")])
 death_component = NodePath("DeathComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -0.174533
 texture = ExtResource("3_pe264")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -23,3 +61,9 @@ shape = SubResource("CircleShape2D_ue1cu")
 
 [node name="DeathComponent" type="Node2D" parent="."]
 script = ExtResource("4_wfc7s")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0nnf0")
+}
+autoplay = "move"

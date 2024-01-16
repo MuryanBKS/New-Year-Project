@@ -22,7 +22,7 @@ func _process(delta: float) -> void:
 
 func spawn_ufo():
 	var ufo = ufos.pick_random().instantiate()
-	var size = randf_range(0.03, 0.2)
+	var size = randf_range(0.05, 0.2)
 	%UFOPathFollow2D.progress_ratio = randf()
 	ufo.global_position = %UFOPathFollow2D.global_position
 	ufo.scale = Vector2(size, size)
@@ -51,7 +51,8 @@ func on_died():
 
 func _on_spawn_timer_timeout() -> void:
 	spawn_ufo()
-
+	$UFOSpawnTimer.wait_time = randf_range(3, 7)
+	$UFOSpawnTimer.start()
 
 func _on_firework_timer_timeout() -> void:
 	cheer_firework_count -= 1
