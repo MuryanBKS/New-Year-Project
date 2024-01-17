@@ -17,7 +17,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	time_label.text = format_seconds_string($CountdownTimer.time_left)
 
-
 func game_start():
 	%StartButton.hide()
 	$WorldCamera2D.set_process(true)
@@ -64,7 +63,9 @@ func on_died():
 
 func _on_spawn_timer_timeout() -> void:
 	spawn_ufo()
-	$UFOSpawnTimer.wait_time = randf_range(3, 7)
+	$UFOSpawnTimer.wait_time = randf_range(1.5, 4)
+	if $CountdownTimer.time_left < 60:
+		$UFOSpawnTimer.wait_time = randf_range(0.5, 2)
 	$UFOSpawnTimer.start()
 
 func _on_firework_timer_timeout() -> void:
