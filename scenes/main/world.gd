@@ -9,17 +9,30 @@ var game_score = 0
 @onready var time_label: Label = %TimeLabel
 
 func _ready() -> void:
-	%BulletContainer.reload_sound_play.connect(on_reload)
-	await get_tree().create_timer(5).timeout
-	$AnimationPlayer.stop()
 	%Warning.hide()
-	$CheerSoundPlayer.stop()
-	$CountdownTimer.start()
-
+	%BulletContainer.reload_sound_play.connect(on_reload)
+	$WorldCamera2D.set_process(false)
+	$Player/Scope.set_process(false)
 
 func _process(delta: float) -> void:
 	time_label.text = format_seconds_string($CountdownTimer.time_left)
 
+
+func game_start():
+	%StartButton.hide()
+	$WorldCamera2D.set_process(true)
+	%Warning.show()
+	$AnimationPlayer.play("warning")
+	$CheerSoundPlayer.play()
+	await get_tree().create_timer(5).timeout
+	$Player/Scope.set_process(true)
+	$AnimationPlayer.stop()
+	%Warning.hide()
+	$CheerSoundPlayer.stop()
+	$CountdownTimer.start()
+	$UFOSpawnTimer.start()
+	
+	
 func spawn_ufo():
 	var ufo = ufos.pick_random().instantiate()
 	var size = randf_range(0.05, 0.2)
@@ -78,3 +91,8 @@ func _on_countdown_timer_timeout() -> void:
 func on_score_calculated(score: int):
 	game_score += score
 	print(game_score)
+
+
+
+func _on_button_button_down() -> void:
+	game_start()

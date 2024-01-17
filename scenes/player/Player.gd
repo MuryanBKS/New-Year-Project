@@ -10,9 +10,9 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if is_zoomed:
-		global_position = lerp(global_position, get_global_mouse_position(), 1.0 - exp(-2 * delta))
+		global_position = lerp(global_position, get_global_mouse_position(), 1.0 - exp(-5 * delta))
 	else:
-		global_position = lerp(global_position, get_global_mouse_position(), 1.0 - exp(-3.5 * delta))
+		global_position = lerp(global_position, get_global_mouse_position(), 1.0 - exp(-10 * delta))
 
 
 func on_scope_changed():
